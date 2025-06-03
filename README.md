@@ -1,72 +1,66 @@
-# Natural Language Processing (NLP) & Machine Learning Project
 
-## 📌 Overview
-This project demonstrates Natural Language Processing (NLP) techniques and machine learning algorithms to analyze text data collected from an API request. The workflow includes:
+# Review Rating Prediction
 
-- Data Collection from an external API
-- Exploratory Data Analysis (EDA) to inspect textual features
-- Text Preprocessing (cleaning and transformation)
-- Feature Extraction using TF-IDF
-- Machine Learning Model Implementation (KNN, Logistic Regression, Decision Tree)
-- Hyperparameter Tuning and Model Evaluation
-- Deployment using Streamlit
+## Project Overview
 
-## 🎯 Business Problem
-Businesses need to analyze customer reviews and location data to improve services and attract more customers. Manually processing this data is inefficient, making it difficult to identify key factors influencing business success. A machine learning model can help predict business performance based on reviews and location insights, enabling data-driven decision-making.
+This project builds machine learning models to predict product or service ratings based on customer review text. Using Natural Language Processing (NLP) techniques and classification algorithms, the models aim to accurately classify the rating (1-5) from review content.
 
-## 🛠️ Libraries Used
-```python
-import requests
-import re
-import nltk
-import sklearn
-import pandas as pd
-import numpy as np
-import seaborn as sns
-import matplotlib.pyplot as plt
-from sklearn.feature_extraction.text import TfidfVectorizer
-from sklearn.model_selection import train_test_split
-from sklearn.neighbors import KNeighborsClassifier
-from sklearn.linear_model import LogisticRegression
-from sklearn.tree import DecisionTreeClassifier
-from sklearn.metrics import accuracy_score, classification_report
-```
+---
 
-## 🔍 Step 1: API Request & Data Extraction
-We retrieve business data using the RapidAPI Local Business Data API. The response is stored as a JSON object and normalized into a Pandas DataFrame.
+## Dataset
 
-## 📊 Step 2: Exploratory Data Analysis (EDA)
-We define a function `SEDA` (Simple EDA) to analyze the text column for patterns like URLs, email addresses, mentions, special characters, and emojis.
+- The dataset contains customer reviews and their associated ratings.
+- Reviews are processed using TF-IDF vectorization to transform text into numerical features.
+- Ratings are the target labels for classification.
 
-## 🧼 Step 3: Text Preprocessing
-The `pre_processing` function cleans text by:
-- Removing HTML tags, URLs, mentions, emails, punctuation, digits, and emojis
-- Converting text to lowercase
-- Removing stopwords
-- Applying stemming or lemmatization
+---
 
-## 🔠 Step 4: Feature Extraction with TF-IDF
-To transform text into numerical features, we use TF-IDF (Term Frequency-Inverse Document Frequency) representation.
+## Key Features
 
-## 🏆 Step 5: Machine Learning Model Implementation
-### K-Nearest Neighbors (KNN)
+- **Text Vectorization:** Uses `TfidfVectorizer` to convert review text into TF-IDF features.
+- **Data Preprocessing:** Splitting dataset into training and testing sets; features are standardized using `StandardScaler`.
+- **Modeling:**
+  - **K-Nearest Neighbors (KNN):** Hyperparameters optimized with Optuna for best accuracy.
+  - **Logistic Regression:** Hyperparameters including penalty type, regularization strength, and solver tuned via Optuna.
+- **Evaluation:** Model performance evaluated using classification reports including precision, recall, and F1-score.
+- **Prediction Function:** Provides a reusable function to predict ratings from new review text input.
+
+---
 
 
+## Usage
 
-## 🔄 Step 6: Hyperparameter Tuning & Model Evaluation
-We fine-tune the models using GridSearchCV or RandomizedSearchCV to achieve optimal performance.
-`
+1. **Data Preparation:** Load your review dataset with columns for text (`review_text`) and ratings (`rating`).
+2. **Feature Extraction:** Vectorize reviews using TF-IDF.
+3. **Split and Scale:** Split data into train/test sets and apply standard scaling.
+4. **Hyperparameter Tuning:** Run Optuna to find the best model parameters for KNN and Logistic Regression.
+5. **Model Training:** Train best models with optimized parameters.
+6. **Evaluation:** Use classification reports to assess performance.
+7. **Predict:** Use the `predict_rating` function to classify new reviews.
 
+---
 
+## Results Summary
 
-## 📌 Summary
-✅ Collected text data via API
-✅ Performed Exploratory Data Analysis (EDA)
-✅ Cleaned text by removing HTML tags, URLs, mentions, emails, punctuation, digits, stopwords, and emojis
-✅ Applied stemming and lemmatization
-✅ Transformed text into numerical features using TF-IDF
-✅ Implemented Machine Learning models (KNN, Logistic Regression, Decision Tree)
-✅ Fine-tuned models for improved performance
-✅ Deployed the best model using Streamlit
+- KNN achieved an accuracy of ~56% on training folds.
+- Logistic Regression reached accuracy of ~67% in cross-validation.
+- Model performance is affected by data imbalance and text complexity.
+- Further improvements possible with larger datasets and more advanced NLP models.
 
-This project helps strengthen essential data science skills, including data preprocessing, model evaluation, hyperparameter tuning, and deployment techniques.
+---
+
+## Future Work
+
+- Explore deep learning models like LSTM or BERT for better text understanding.
+- Address class imbalance with techniques such as SMOTE or class weighting.
+- Implement ensemble models combining KNN and Logistic Regression.
+- Expand dataset for improved generalization.
+
+---
+
+## Author
+
+Oni Samuel Oluwapelumi  
+Email: onis784@gmail.com  
+GitHub: [https://github.com/oni-samuel](https://github.com/oni-samuel)  
+LinkedIn: [https://www.linkedin.com/in/samuel-oni](https://www.linkedin.com/in/samuel-oni)
